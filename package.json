@@ -1,0 +1,54 @@
+{
+  "name": "react-decide",
+  "version": "0.0.0-development",
+  "description": "React Component to make the Conditional Render look Elegant",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "rollup -c",
+    "build:watch": "rollup -c --watch",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inf3cti0n95/react-decide.git"
+  },
+  "keywords": [
+    "react",
+    "if-else",
+    "condition",
+    "conditional",
+    "render",
+    "decide"
+  ],
+  "author": "Viraj Trivedi <inf3cti0n95@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/inf3cti0n95/react-decide/issues"
+  },
+  "homepage": "https://github.com/inf3cti0n95/react-decide#readme",
+  "peerDependencies": {
+    "react": "^16.4.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.0.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "jest": "^23.1.0",
+    "react-test-renderer": "^16.4.1",
+    "rollup": "^0.60.7",
+    "rollup-plugin-babel": "^3.0.4",
+    "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-includepaths": "^0.2.2",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "semantic-release": "^15.5.4",
+    "travis-deploy-once": "^5.0.0"
+  },
+  "dependencies": {
+    "lodash.isfunction": "^3.0.9",
+    "prop-types": "^15.6.1"
+  }
+}
