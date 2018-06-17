@@ -54,50 +54,52 @@ var hasValidChildren = function hasValidChildren(children) {
     if (!children.every(function (child) {
       return child.type === If || child.type === Else || child.type === ElseIf;
     })) {
-      console.error("Invalid children found, Child for 'Decide' should be one of 'If', 'Else', 'ElseIf'.");
-      return false;
+      throw new Error("Invalid children found, Child for 'Decide' should be one of 'If', 'Else', 'ElseIf'.");
     }
-    var elseChildren = children.filter(function (child) {
-      return child.type === Else;
-    });
-    if (elseChildren.length > 1) {
-      console.error("Else should be used only once.");
-      return false;
-    } else if (elseChildren.length === 0) {
-      return true;
-    } else {
-      if (children[children.length - 1].type !== Else) {
-        console.error("Else should be used at last.");
-        return false;
-      } else {
+    if (children[0].type === If) {
+      var elseChildren = children.filter(function (child) {
+        return child.type === Else;
+      });
+      var ifChildren = children.filter(function (child) {
+        return child.type === If;
+      });
+
+      if (ifChildren.length > 1) throw new Error("'If' should be used only once.");
+
+      if (elseChildren.length > 1) {
+        throw new Error("Else should be used only once.");
+      } else if (elseChildren.length === 0) {
         return true;
+      } else {
+        if (children[children.length - 1].type !== Else) {
+          throw new Error("Else should be used at last.");
+        } else {
+          return true;
+        }
       }
-    }
-    if (children[0].type === If) return true;else {
-      console.error("First Children must be an 'If' component");
-      return false;
+    } else {
+      throw new Error("First Children must be an 'If' component");
     }
   } else {
     if (children.type === If) return true;else {
-      console.error("First Children must be an 'If' component");
-      return false;
+      throw new Error("First Children must be an 'If' component");
     }
   }
 };
 
 var evaluateChildren = function evaluateChildren(children) {
   if (Array.isArray(children) && children.length > 0) {
-    var trutyChild = children.find(function (child) {
+    var truthyChild = children.find(function (child) {
       return evaluateConditionProp(child.props.condition);
     });
-    if (trutyChild) {
-      return trutyChild;
+    if (truthyChild) {
+      return truthyChild;
     } else {
       var lastChild = children[children.length - 1];
       return lastChild.type === Else ? lastChild : null;
     }
   } else {
-    return typeof children.props.condition !== "undefined" && evaluateConditionProp(child.props.condition) ? children : null;
+    return typeof children.props.condition !== "undefined" && evaluateConditionProp(children.props.condition) ? children : null;
   }
 };
 

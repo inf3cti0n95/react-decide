@@ -18,7 +18,18 @@ export default {
     }),
     resolve(),
     babel({
-      exclude: "node_modules/**"
+      exclude: "node_modules/**",
+      presets: [
+        [
+          "env",
+          {
+            modules: false
+          }
+        ],
+        "react"
+      ],
+      plugins: ["external-helpers"],
+      babelrc: false
     })
   ]
 };
