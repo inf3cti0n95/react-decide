@@ -8,11 +8,10 @@ node_js:
   - '9'
   - '8'
 install:
-  - npm install -g codecov jest
-script:
-  - npm test && codecov
+  - npm install -g codecov
 after_success:
   - npm run travis-deploy-once "npm run semantic-release"
+  - codecov
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
