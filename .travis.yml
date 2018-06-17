@@ -8,7 +8,7 @@ node_js:
   - '9'
   - '8'
 install:
-  - npm install -g codecov
+  - npm install -g codecov jest
 script:
   - npm test && codecov
 after_success:
